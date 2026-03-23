@@ -19,12 +19,9 @@ export default function WalletConnect() {
   const isWrongNetwork = isConnected && chain?.id !== arbitrumSepolia.id;
   const isTestnet = chain?.testnet ?? (chain?.name?.toLowerCase().includes("test") || chain?.name?.toLowerCase().includes("sepolia"));
 
-  // Securely find the best connector (MetaMask or standard Injected)
+  // Connect with the injected wallet (MetaMask, Rainbow, etc.)
   const handleConnect = () => {
-    const connector =
-      connectors.find((c) => c.id === "metaMask") ||
-      connectors.find((c) => c.id === "injected") ||
-      connectors[0];
+    const connector = connectors[0];
     if (connector) connect({ connector });
   };
 
